@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  bancomundial-back:
+    build:
+      context: ./back-bancomundial/
+      dockerfile: src/main/docker/Dockerfile.jvm
+    container_name: bank-back
+    restart: always
+    networks:
+      - bank_networking
+    ports:
+      - '8080:8080'
+    expose:
+      - '8080'
+
+volumes:
+  bank_tracing_data:
+    driver: local
+  bank_prometheus_data:
+    driver: local
+  bank_grafana_data:
+    driver: local
+
+networks:
+  bank_networking:
+    driver: bridge
