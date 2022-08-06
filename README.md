@@ -43,17 +43,17 @@ Obrigatórios:
 
 - [X] O back-end deve ser escrito em Java;
 
-- [] O front-end deve ser escrito em Angular versão 9;
+- [X] O front-end deve ser escrito em Angular versão 9;
 
 - [X] Expor uma API REST no microsserviço de back-end;
 
-- [] Fazer com que o front-end consuma a API REST do back-end;
+- [X] Fazer com que o front-end consuma a API REST do back-end;
 
 - [X] A API REST a ser criada no back-end deve ser documentada e permitir acesso via SwaggerUI;
 
 - [X] Fazer com que a aplicação funcione com docker, onde os containers sejam regidos por docker-compose;
 
-- [x] Testes automatizados e efetivos;
+- [] Testes automatizados e efetivos;
 
 ##Desejáveis:
 
