@@ -124,10 +124,10 @@ http://localhost:8080/api/v1/paises
 ```
 **param de vars:**
 
-Parâmetro | Obrigatorio | Formato | Tipo | Descrição | Exemplo
+param | default | format | type | description | exemple
 --- | --- | --- | --- | --- | ---  
-paginaAtual | Opcional  | X  | number  | Número da página para exibição | 2
-porPagina | Opcional | X | number | Número de itens por página | 50 
+paginaAtual | default  | X  | number  | num pag exibição | 2
+porPagina | default | X | number | num de item pag | 50 
 
 **via curl:**
 ```shell script
