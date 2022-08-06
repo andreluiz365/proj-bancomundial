@@ -27,9 +27,9 @@ O front-end não deve se comunicar diretamente com a API do Banco Mundial.
 
 A API a ser consumida é a seguinte:
 
-http://api.worldbank.org/v2/country/{CODIGO_DO_PAIS}/indicator/SI.POV.DDAY?format=json
+http://api.worldbank.org/v2/country/{id}/indicator/SI.POV.DDAY?format=json
 
-Note a variável “CODIGO_DO_PAIS” na URL
+Note a variável “id” na URL
 
 Os possíveis códigos de país (CODIGO_DO_PAI S) estão descritos aqui:
 
@@ -41,31 +41,95 @@ http://api.worldbank.org/v2/country
 
 Obrigatórios:
 
-• O back-end deve ser escrito em Java;
+- [X] O back-end deve ser escrito em Java;
 
-• O front-end deve ser escrito em Angular versão 9;
+- [] O front-end deve ser escrito em Angular versão 9;
 
-• Expor uma API REST no microsserviço de back-end;
+- [X] Expor uma API REST no microsserviço de back-end;
 
-• Fazer com que o front-end consuma a API REST do back-end;
+- [] Fazer com que o front-end consuma a API REST do back-end;
 
-• A API REST a ser criada no back-end deve ser documentada e permitir acesso via SwaggerUI;
+- [X] A API REST a ser criada no back-end deve ser documentada e permitir acesso via SwaggerUI;
 
-• Fazer com que a aplicação funcione com docker, onde os containers sejam regidos por docker-compose;
+- [X] Fazer com que a aplicação funcione com docker, onde os containers sejam regidos por docker-compose;
 
-• Testes automatizados e efetivos;
+- [x] Testes automatizados e efetivos;
 
 ##Desejáveis:
 
-• Escrever o back-end utilizando o framework Quarkus;
+- [X] Escrever o back-end utilizando o framework Quarkus;
  
-• A atividade de Desenvolvimento deverá ser “commitada” no GitHub ou GitLab, não serão aceitos commits feitos após o prazo;
+- [X] A atividade de Desenvolvimento deverá ser “commitada” no GitHub ou GitLab, não serão aceitos commits feitos após o prazo;
 
 • Escrever em um documento Word ou ReadMe com:
 
-    o Passos a serem seguidos para inicializar a aplicação via docker;
+- [X]o Passos a serem seguidos para inicializar a aplicação via docker;
 
-    o História(s) de usuário que darão origem à aplicação contendo:
 
-             - Até 3 critérios de aceitação
-             - Até 5 cenários de testes
+## incializando a aplicação 
+
+### fase 1
+Faça o clone do projeto
+```shell script
+$ git clone https://github.com/andreluiz365/proj-bancomundial.git proj-bancomundial
+```
+
+### fase 2 
+Entre na pasta raiz do projeto
+
+```shell script
+$ cd proj-bancomundial
+```
+
+### fase 3
+
+```shell script
+$ cd backend
+```
+
+### fase 4 
+Executar o comando do maven para gerar o artefato que será publicado no docker
+
+```shell script
+$ cd mvn clean install
+```
+
+### fase 5
+Voltar para pasta raiz
+
+```shell script
+$ cd ..
+```
+
+OBS: Replicar Passo 3, 4 e 5 para o api e getapi
+
+### fase 6
+Execute o comando para levantar toda infraestrutura necessária
+
+```shell script
+$ docker-compose up --build
+```
+
+Acompanhar logs: 
+```shell script
+$ docker-compose logs -f
+```
+
+# Metodo para consumir Endpoints
+
+## capturar info de paises
+**uri de requisição:**
+```
+http://localhost:8080/api/v1/paises
+```
+**param de vars:**
+
+Parâmetro | Obrigatorio | Formato | Tipo | Descrição | Exemplo
+--- | --- | --- | --- | --- | ---  
+paginaAtual | Opcional  | X  | number  | Número da página para exibição | 2
+porPagina | Opcional | X | number | Número de itens por página | 50 
+
+**via curl:**
+```shell script
+curl -X GET "http://localhost:8080/api/v1/paises?paginaAtual=1&porPagina=50" -H  "accept: */*"
+```

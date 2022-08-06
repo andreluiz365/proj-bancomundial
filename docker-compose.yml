@@ -1,16 +1,30 @@
 version: '3.7'
 
 services:
-  bancomundial-back:
+  back-banck-api:
     build:
-      context: ./back-bancomundial/
+      context: ./back-bank-api/
       dockerfile: src/main/docker/Dockerfile.jvm
-    container_name: bank-back
+    container_name: back-bank-api
     restart: always
     networks:
-      - bank_networking
+      - bank_network
     ports:
       - '8080:8080'
+    expose:
+      - '8080'
+
+
+  back-bank-getapi:
+    build:
+      context: ./back-bank-getapi/
+      dockerfile: src/main/docker/Dockerfile.jvm
+    container_name: back-bank-getapi
+    restart: always
+    networks:
+      - bank_network
+    ports:
+      - '8081:8080'
     expose:
       - '8080'
 
@@ -23,5 +37,5 @@ volumes:
     driver: local
 
 networks:
-  bank_networking:
+  bank_network:
     driver: bridge
